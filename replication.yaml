@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hello-minikube
+spec:
+  replicas: 7
+  selector:
+    app: hello-minikube
+  template:
+    metadata:
+      name: hello-minikube
+      labels:
+        app: hello-minikube
+    spec:
+      containers:
+      - name: hello-minikube
+        image: hello-minikube
+        ports:
+        - containerPort: 3000
