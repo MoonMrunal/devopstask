@@ -1,7 +1,7 @@
 # DevOpstask
 
 #### 1. There should be 10 replicas running. (completed)
-#### 2. The deployment should auto scale at average 50% CPU and 60% memory. (incomplete)
+#### 2. The deployment should auto scale at average 50% CPU and 60% memory. (completed)
 #### 3. Load test the application (can be done using JMeter) and include the test results in your submission. (incomplete)
 #### 4. Use a custom docker image hosted on any docker registry called nodejs-test:latest (any region). (completed)
 #### 5. The docker image which must be in private docker registry. (completed)
@@ -84,6 +84,43 @@
 ```kubectl scale deployment hello-minikube --replicas 10 ```
 
 ##### Task 1 completed
+
+##### auto scale at average 50% CPU
+```kubectl autoscale deployment hello-minikube --min=1 --max=4 --cpu-percent=50```
+
+##### To get the available hpa in your cluster.
+```kubectl get hpa```
+
+##### auto scale at average 60% memory
+``` vi memory.yaml```
+
+#### Write to file
+```
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-minikube
+spec:
+  maxReplicas: 4
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion:
+    kind: Deployment
+    name: hello-minikube
+  metrics:
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageUtilization: 60
+```
+
+#### Apply changes
+```kubectl apply -f memory.yaml```
+
+#### List all resources
+```kubectl get all```
+
+##### Task 2 completed
 
 ##### Create docker file
 ```vi Dockerfile ```
