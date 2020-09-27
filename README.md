@@ -21,72 +21,72 @@
 ## Technology stack used : Docker, DockerHub, Kubectl, Minikube,oracle vertual box, Putty, PuttyGen
 
 ##### For maximum privileges run 
-``` sudo su ```
+```sudo su ```
 
 #####Upgrade system
-``` apt-get upgrade ```
+```apt-get upgrade ```
 
 ##### Install KubeCtl
 ##### Download latest release
-``` curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" ``` 
+```curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" ``` 
 
 ##### Make the kubectl binary executable.
-``` chmod +x ./kubectl ``` 
+```chmod +x ./kubectl ``` 
 
 ##### Move the binary in to your PATH.
-``` sudo mv ./kubectl /usr/local/bin/kubectl ``` 
+```sudo mv ./kubectl /usr/local/bin/kubectl ``` 
 
 ##### Test to ensure the version you installed is up-to-date:
-``` kubectl version --client ``` 
+```kubectl version --client ``` 
 
 ##### Install Docker
-``` apt-get install docker.io -y ``` 
+```apt-get install docker.io -y ``` 
 
 ##### Check version
-``` docker version ``` 
+```docker version ``` 
 
 ##### Install MiniKube
 ##### Install Minikube via direct download
-``` curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \ && chmod +x minikube ``` 
+```curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \ && chmod +x minikube ``` 
 
 ##### add the Minikube executable to your path:
 
-``` sudo mkdir -p /usr/local/bin/ ``` 
-``` sudo install minikube /usr/local/bin/ ``` 
+```sudo mkdir -p /usr/local/bin/ ``` 
+```sudo install minikube /usr/local/bin/ ``` 
 
 ##### Check version
-``` minikube version ``` 
+```minikube version ``` 
 
 ##### Start minikube
-``` minikube start ``` 
+```minikube start ``` 
 
 ##### If VM error occured executed
-``` minikube start -vm-driver=none ``` 
+```minikube start -vm-driver=none ``` 
 
 ##### check minikube status
-``` minikube status ```
+```minikube status ```
 
-``` apt-get install -y conntrack ```
+```apt-get install -y conntrack ```
 
 ##### Minikube started
 
 ##### To deploy pod
 ##### To go inside minikube
-``` sudo -i ```
+```sudo -i ```
 
 ##### To create first container using kubectl command
-``` kubectl run hello-minikube --image=vaibhavdanao/node-hello-app --port=8080 ```
+```kubectl run hello-minikube --image=vaibhavdanao/node-hello-app --port=8080 ```
 
 ##### Check pods
-``` kubectl get pods ```
+```kubectl get pods ```
 
 ##### For 10 replica running
-``` kubectl scale deployment hello-minikube --replicas 10 ```
+```kubectl scale deployment hello-minikube --replicas 10 ```
 
 ##### Task 1 completed
 
 ##### Create docker file
-``` vi Dockerfile ```
+```vi Dockerfile ```
 
 ##### Write to the file
 ```
@@ -112,20 +112,20 @@ CMD ["npm", "start"]
 ```
 
 ##### To create image from dockerfile
-``` docker build -it nodejs ```
+```docker build -it nodejs ```
 
 ##### To check image
-``` docker images ```
+```docker images ```
 
 ##### Task 4 completed
 
 ##### Create Account on https://hub.docker.com/
 
 ##### login
-``` docker login ```
+```docker login ```
 
 ##### Push repository to docker hub
-``` docker push vaibhavdanao/node-hello-app ```
+```docker push vaibhavdanao/node-hello-app ```
 
 ##### To make private repository
 https://hub.docker.com/ -----> select node-hello-app repository ----> setting ----> make repository private
@@ -133,15 +133,15 @@ https://hub.docker.com/ -----> select node-hello-app repository ----> setting --
 ##### Task 5 completed
 
 ##### To set loadbalancer & expose on port 3000
-``` kubectl expose deployment hello-minikube -type=LoadBalancer --port=3000 ```
+```kubectl expose deployment hello-minikube -type=LoadBalancer --port=3000 ```
 
 ##### Check loadbalancer on port
-``` kubectl get services ```
+```kubectl get services ```
 
 ##### Task 6 completed
 
 ##### Replication control for 7 replica in .yaml
-``` vi replication.yaml ```
+```vi replication.yaml ```
 
 ##### Write to file 
 ```
@@ -166,10 +166,10 @@ spec:
         - containerPort: 3000
 ```
 ##### Run replication
-``` kubectl apply -f replication.yaml ```
+```kubectl apply -f replication.yaml ```
 
 ##### Check rplications control
-``` kubectl describe replicationcontrollers/hello-minikube ```
+```kubectl describe replicationcontrollers/hello-minikube ```
 
 ##### Task 7 completed
 ##### Task 8 completed (optional)
