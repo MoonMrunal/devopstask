@@ -27,7 +27,7 @@
 ``` apt-get upgrade ```
 
 ##### Install KubeCtl
-//Download latest release
+##### Download latest release
 ``` curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" ``` 
 
 ##### Make the kubectl binary executable.
