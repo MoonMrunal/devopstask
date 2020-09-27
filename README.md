@@ -1,4 +1,5 @@
 # DevOpstask
+
 #### 1. There should be 10 replicas running.
 #### 2. The deployment should auto scale at average 50% CPU and 60% memory.
 #### 3. Load test the application (can be done using JMeter) and include the test results in your submission.
@@ -9,3 +10,116 @@
 #### 8. Use automation wherever required (Ex- Jenkins for CI/CD, Terraform as Infra Provisioning).
 #### 9. Any changes in the source code will not be accepted.
 #### 10. All submissions must be accepted as GitHub repository.
+
+
+# Solution
+## System : AmazonEC2 
+## Tier :  3
+## OS : Ubuntu 18.04
+## CPU : 2 
+## Memory : 2GB
+## Technology stack used : Docker, DockerHub, Kubectl, Minikube,oracle vertual box, Putty, PuttyGen
+
+
+//For maximum privileges run 
+``` sudo su ```
+
+//Upgrade system
+``` apt-get upgrade ```
+
+### Install KubeCtl
+//Download latest release
+``` curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" ``` 
+
+Make the kubectl binary executable.
+``` chmod +x ./kubectl ``` 
+
+Move the binary in to your PATH.
+``` sudo mv ./kubectl /usr/local/bin/kubectl ``` 
+
+Test to ensure the version you installed is up-to-date:
+``` kubectl version --client ``` 
+
+### Install Docker
+``` apt-get install docker.io -y ``` 
+
+Check version
+``` docker version ``` 
+
+### Install MiniKube
+Install Minikube via direct download
+``` curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \ && chmod +x minikube ``` 
+
+add the Minikube executable to your path:
+
+``` sudo mkdir -p /usr/local/bin/ ``` 
+``` sudo install minikube /usr/local/bin/ ``` 
+
+Check version
+``` minikube version ``` 
+
+Start minikube
+``` minikube start ``` 
+
+If VM error occured executed
+``` minikube start -vm-driver=none ``` 
+
+check minikube status
+``` minikube status ```
+
+``` apt-get install -y conntrack ```
+
+Minikube started
+
+To deploy pod
+To go inside minikube
+``` sudo -i ```
+
+To create first container using kubectl command
+``` kubectl run hello-minikube --image=vaibhavdanao/node-hello-app --port=8080 ```
+
+Check pods
+``` kubectl get pods ```
+
+For 10 replica running
+``` kubectl scale deployment hello-minikube --replicas 10 ```
+
+Task 1 completed
+
+Create docker file
+``` vi Dockerfile ```
+
+Write to the file
+```
+FROM ubuntu
+
+WORKDIR "/app"
+
+RUN apt-get update \
+ && apt-get dist-upgrade -y \
+ && apt-get clean \
+ && echo 'Finished installing dependencies'
+
+RUN npm install --production
+
+ENV NODE_ENV production
+ENV PORT 3000
+
+EXPOSE 3000
+
+USER node
+
+CMD ["npm", "start"]
+```
+
+To create image from dockerfile
+``` docker build -it nodejs ```
+
+
+
+
+
+
+
+
+
