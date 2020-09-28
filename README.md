@@ -47,7 +47,8 @@
 
 ##### Install MiniKube
 ##### Install Minikube via direct download
-```curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \ && chmod +x minikube ``` 
+```curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+  && chmod +x minikube ``` 
 
 ##### add the Minikube executable to your path:
 
@@ -66,7 +67,7 @@
 ##### check minikube status
 ```minikube status ```
 
-```apt-get install -y conntrack ```
+```sudo apt-get install -y conntrack ```
 
 ##### Minikube started
 
